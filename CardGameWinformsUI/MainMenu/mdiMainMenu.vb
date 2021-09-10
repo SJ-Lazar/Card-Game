@@ -84,4 +84,12 @@ Public Class mdiMainMenu
     End Sub
 
     Private m_ChildFormNumber As Integer
+
+    Private Sub btnManageCards_Click(sender As Object, e As EventArgs) Handles btnManageCards.Click
+        frmViewAllCards.Show()
+    End Sub
+
+    Private Sub btnManagePlayers_Click(sender As Object, e As EventArgs) Handles btnManagePlayers.Click
+        frmViewAllPlayers.Show()
+    End Sub
 End Class
