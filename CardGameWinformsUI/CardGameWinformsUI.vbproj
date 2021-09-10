@@ -73,11 +73,53 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\CardForms\frmAddUpdateCard.Designer.vb">
+      <DependentUpon>frmAddUpdateCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CardForms\frmAddUpdateCard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CardForms\frmCreateCard.Designer.vb">
+      <DependentUpon>frmCreateCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CardForms\frmCreateCard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CardForms\frmViewAllCards.Designer.vb">
+      <DependentUpon>frmViewAllCards.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CardForms\frmViewAllCards.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PlayersForm\frmAddUpdate.Designer.vb">
+      <DependentUpon>frmAddUpdate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PlayersForm\frmAddUpdate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PlayersForm\frmCreatePlayer.Designer.vb">
+      <DependentUpon>frmCreatePlayer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PlayersForm\frmCreatePlayer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PlayersForm\frmViewAllPlayers.Designer.vb">
+      <DependentUpon>frmViewAllPlayers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PlayersForm\frmViewAllPlayers.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLogin.Designer.vb">
       <DependentUpon>frmLogin.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu\mdiMainMenu.Designer.vb">
+      <DependentUpon>mdiMainMenu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu\mdiMainMenu.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -99,6 +141,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu\mdiMainMenu.resx">
+      <DependentUpon>mdiMainMenu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
