@@ -24,6 +24,7 @@ Partial Class frmViewAllCards
     Private Sub InitializeComponent()
         Me.dgvCardsList = New System.Windows.Forms.DataGridView()
         Me.btnRefresh = New System.Windows.Forms.Button()
+        Me.btnCreate = New System.Windows.Forms.Button()
         CType(Me.dgvCardsList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -44,11 +45,21 @@ Partial Class frmViewAllCards
         Me.btnRefresh.Text = "Refresh"
         Me.btnRefresh.UseVisualStyleBackColor = True
         '
+        'btnCreate
+        '
+        Me.btnCreate.Location = New System.Drawing.Point(394, 12)
+        Me.btnCreate.Name = "btnCreate"
+        Me.btnCreate.Size = New System.Drawing.Size(115, 27)
+        Me.btnCreate.TabIndex = 2
+        Me.btnCreate.Text = "Create "
+        Me.btnCreate.UseVisualStyleBackColor = True
+        '
         'frmViewAllCards
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.btnCreate)
         Me.Controls.Add(Me.btnRefresh)
         Me.Controls.Add(Me.dgvCardsList)
         Me.Name = "frmViewAllCards"
@@ -60,4 +71,5 @@ Partial Class frmViewAllCards
 
     Friend WithEvents dgvCardsList As DataGridView
     Friend WithEvents btnRefresh As Button
+    Friend WithEvents btnCreate As Button
 End Class

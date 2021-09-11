@@ -24,4 +24,8 @@ Public Class frmViewAllCards
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         GetAllCardsList()
     End Sub
+
+    Private Sub btnCreate_Click(sender As Object, e As EventArgs) Handles btnCreate.Click
+        frmCreateCard.Show()
+    End Sub
 End Class

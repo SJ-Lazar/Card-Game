@@ -158,6 +158,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\CardForms\frmCreateCard.resx">
+      <DependentUpon>frmCreateCard.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CardForms\frmViewAllCards.resx">
       <DependentUpon>frmViewAllCards.vb</DependentUpon>
     </EmbeddedResource>
