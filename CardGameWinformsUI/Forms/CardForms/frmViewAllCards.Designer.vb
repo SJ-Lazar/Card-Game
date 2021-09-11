@@ -22,9 +22,42 @@ Partial Class frmViewAllCards
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
+        Me.dgvCardsList = New System.Windows.Forms.DataGridView()
+        Me.btnRefresh = New System.Windows.Forms.Button()
+        CType(Me.dgvCardsList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'dgvCardsList
+        '
+        Me.dgvCardsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvCardsList.Location = New System.Drawing.Point(13, 119)
+        Me.dgvCardsList.Name = "dgvCardsList"
+        Me.dgvCardsList.Size = New System.Drawing.Size(775, 301)
+        Me.dgvCardsList.TabIndex = 0
+        '
+        'btnRefresh
+        '
+        Me.btnRefresh.Location = New System.Drawing.Point(12, 90)
+        Me.btnRefresh.Name = "btnRefresh"
+        Me.btnRefresh.Size = New System.Drawing.Size(75, 23)
+        Me.btnRefresh.TabIndex = 1
+        Me.btnRefresh.Text = "Refresh"
+        Me.btnRefresh.UseVisualStyleBackColor = True
+        '
+        'frmViewAllCards
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.btnRefresh)
+        Me.Controls.Add(Me.dgvCardsList)
+        Me.Name = "frmViewAllCards"
         Me.Text = "frmViewAllCards"
+        CType(Me.dgvCardsList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+
     End Sub
+
+    Friend WithEvents dgvCardsList As DataGridView
+    Friend WithEvents btnRefresh As Button
 End Class

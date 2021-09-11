@@ -3,6 +3,24 @@
 Public Class SqlHelper
 
 
+    Public Async Function ExecuteNonQueryAasync(connectionString As String, sqlQuery As String,
+                                 Optional parameters As List(Of SqlParameter) = Nothing,
+                                 Optional isStoredProcedure As Boolean = False) As Task(Of Boolean)
+
+        Using sqlConnetion As New SqlConnection(connectionString)
+
+            IsConnectionOpen(sqlConnetion)
+
+            Using sqlCommand As New SqlCommand(sqlQuery, sqlConnetion)
+                IsAStoredProcedure(isStoredProcedure, sqlCommand)
+                AddsqlCommandParameter(parameters, sqlCommand)
+                sqlCommand.ExecuteNonQuery()
+                Return True
+            End Using
+
+        End Using
+        Return False
+    End Function
     Public Function ExecuteQuery(connectionString As String, sqlQuery As String,
                                  Optional parameters As List(Of SqlParameter) = Nothing,
                                  Optional isStoredProcedure As Boolean = False) As DataTable
