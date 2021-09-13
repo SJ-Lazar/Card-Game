@@ -1,14 +1,13 @@
 ﻿
-
-Imports System.Data.SqlClient
 Imports CardGameDataModels
 Imports CardGameHelpers
+Imports GeneralExtensions
 
 Public Interface ICardRepository
     Function CreateCard(cardModel As CardModel) As SqlResponseModel
     Function UpdateCard(cardModel As CardModel) As SqlResponseModel
     Function DeleteCard(Id As Integer) As SqlResponseModel
-    Function ReadCardList() As Task(Of List(Of CardModel))
+    Function ReadCardList() As List(Of CardModel)
     Function ReadCard() As CardModel
 End Interface
 
@@ -33,20 +32,10 @@ Public Class CardRepository
         Throw New NotImplementedException()
     End Function
 
-    Public Async Function ReadCardList() As Task(Of List(Of CardModel)) Implements ICardRepository.ReadCardList
-        Dim listOfCards = New List(Of CardModel)
-        Dim sqlAsyncHelper = New SqlAsyncHelper()
-        Dim cmd = sqlAsyncHelper.ExecuteQueryAsync(_connectionString, "SELECT * FROM dbo.Cards")
-
-        Using dr = cmd.ExecuteReaderAsync
-            While Await dr.Result.ReadAsync()
-                'Dim tempCard As New CardModel()
-
-                listOfCards.Add(New CardModel(If(IsDBNull(Await dr.Result.GetFieldValueAsync(Of Integer)(0)), dr.Result.GetFieldValueAsync(Of Integer)(0), 0),
-                                              If(IsDBNull(Await dr.Result.GetFieldValueAsync(Of String)(1)), dr.Result.GetFieldValueAsync(Of String)(1), String.Empty),
-                                              If(IsDBNull(Await dr.Result.GetFieldValueAsync(Of Integer)(2)), dr.Result.GetFieldValueAsync(Of Integer)(2), 0)))
-            End While
-        End Using
+    Public Function ReadCardList() As List(Of CardModel) Implements ICardRepository.ReadCardList
+        Dim sqlHelper = New SqlHelper()
+        Dim dt = sqlHelper.ExecuteQuery(_connectionString, "SELECT * FROM dbo.Card")
+        Dim listOfCards = ConvertDataTable.ToList(Of CardModel)(dt)
         Return listOfCards
     End Function
 

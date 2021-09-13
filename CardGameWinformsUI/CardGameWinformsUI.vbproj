@@ -203,6 +203,10 @@
       <Project>{849D772B-0E69-4F5E-B8C6-D708AB1AFED1}</Project>
       <Name>CardGameRepository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GeneralExtensions\General.vbproj">
+      <Project>{a34b9aa3-0254-41e7-9aeb-6de80b1f8f4e}</Project>
+      <Name>General</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
