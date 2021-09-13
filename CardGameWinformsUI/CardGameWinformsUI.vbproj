@@ -191,9 +191,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CardGameDataModels\CardGameDataModels.vbproj">
+      <Project>{17ef3cfb-46a5-4624-9ee7-64c8a71f799f}</Project>
+      <Name>CardGameDataModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CardGameHelpers\CardGameHelpers.vbproj">
-      <Project>{0177E435-2590-495A-BBB7-CBEEBD25C129}</Project>
+      <Project>{0177e435-2590-495a-bbb7-cbeebd25c129}</Project>
       <Name>CardGameHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CardGameRepository\CardGameRepository.vbproj">
+      <Project>{849D772B-0E69-4F5E-B8C6-D708AB1AFED1}</Project>
+      <Name>CardGameRepository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

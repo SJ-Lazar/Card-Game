@@ -1,6 +1,6 @@
 ﻿
 Imports System.Configuration
-Imports CardGameHelpers
+Imports CardGameRepository
 
 Public Class frmViewAllCards
 
@@ -8,17 +8,17 @@ Public Class frmViewAllCards
 
 
     Private Sub frmViewAllCards_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        dgvCardsList.ColumnCount = 3
+        dgvCardsList.Columns(0).Name = "Id"
+        dgvCardsList.Columns(1).Name = "Name"
+        dgvCardsList.Columns(2).Name = "ImageId"
         GetAllCardsList()
+
     End Sub
 
     Private Sub GetAllCardsList()
-        Dim sqlhelper = New SqlHelper()
-        Dim cardList = sqlhelper.ExecuteQuery(connectionString, "SELECT * FROM dbo.Card")
-        If IsNothing(cardList) Then
-            MsgBox("Card List is Empty")
-        Else
-            dgvCardsList.DataSource = cardList
-        End If
+        Dim repository = New CardRepository(connectionString)
+        dgvCardsList.Rows.Add(repository.ReadCardList())
     End Sub
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click

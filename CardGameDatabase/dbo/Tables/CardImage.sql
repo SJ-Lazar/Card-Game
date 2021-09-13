@@ -4,6 +4,6 @@
     [CardId] INT NOT NULL, 
     [ImageId] INT NOT NULL, 
     CONSTRAINT [FK_CardImage_Card] FOREIGN KEY (CardId) REFERENCES Card(Id), 
-    CONSTRAINT [FK_CardImage_Image] FOREIGN KEY (ImageID) REFERENCES Image(Id)
+    CONSTRAINT [FK_CardImage_Image] FOREIGN KEY (ImageId) REFERENCES Image(Id)
 
 )

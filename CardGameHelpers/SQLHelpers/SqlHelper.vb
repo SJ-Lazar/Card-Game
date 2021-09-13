@@ -3,9 +3,9 @@
 Public Class SqlHelper
 
 
-    Public Async Function ExecuteNonQueryAasync(connectionString As String, sqlQuery As String,
+    Public Function ExecuteNonQueryAasync(connectionString As String, sqlQuery As String,
                                  Optional parameters As List(Of SqlParameter) = Nothing,
-                                 Optional isStoredProcedure As Boolean = False) As Task(Of Boolean)
+                                 Optional isStoredProcedure As Boolean = False) As Boolean
 
         Using sqlConnetion As New SqlConnection(connectionString)
 

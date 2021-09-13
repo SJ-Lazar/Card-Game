@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{17EF3CFB-46A5-4624-9EE7-64C8A71F799F}</ProjectGuid>
+    <ProjectGuid>{849D772B-0E69-4F5E-B8C6-D708AB1AFED1}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>CardGameDataModels</RootNamespace>
-    <AssemblyName>CardGameDataModels</AssemblyName>
+    <RootNamespace>CardGameRepository</RootNamespace>
+    <AssemblyName>CardGameRepository</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -19,7 +19,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>CardGameDataModels.xml</DocumentationFile>
+    <DocumentationFile>CardGameRepository.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -28,7 +28,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>CardGameDataModels.xml</DocumentationFile>
+    <DocumentationFile>CardGameRepository.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -64,7 +64,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CardModels\CardModel.vb" />
+    <Compile Include="CardRepository.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -80,8 +80,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="SqlModels\SqlResponseModel.vb" />
-    <Compile Include="UserModels\UserModel.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -101,6 +99,16 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CardGameDataModels\CardGameDataModels.vbproj">
+      <Project>{17ef3cfb-46a5-4624-9ee7-64c8a71f799f}</Project>
+      <Name>CardGameDataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CardGameHelpers\CardGameHelpers.vbproj">
+      <Project>{0177E435-2590-495A-BBB7-CBEEBD25C129}</Project>
+      <Name>CardGameHelpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

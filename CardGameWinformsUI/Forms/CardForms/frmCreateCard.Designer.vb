@@ -210,7 +210,7 @@ Partial Class frmCreateCard
         Me.Controls.Add(Me.txtName)
         Me.Controls.Add(Me.Label1)
         Me.Name = "frmCreateCard"
-        Me.Text = "frmCreateCard"
+        Me.Text = "Create Card"
         CType(Me.pbImage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudAttack, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.nudDefense, System.ComponentModel.ISupportInitialize).EndInit()

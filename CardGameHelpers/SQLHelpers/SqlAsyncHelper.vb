@@ -1,49 +1,41 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class SqlAsyncHelper
-    'Public Async Function ExecuteQueryAsync(connectionString As String, sqlQuery As String,
-    '                            Optional parameters As List(Of SqlParameter) = Nothing,
-    '                            Optional isStoredProcedure As Boolean = False) As Task
+    Public Function ExecuteQueryAsync(connectionString As String, sqlQuery As String,
+                                Optional parameters As List(Of SqlParameter) = Nothing,
+                                Optional isStoredProcedure As Boolean = False) As SqlCommand
 
-    '    Dim dataTable As New DataTable
-    '    Using sqlConnetion As New SqlConnection(connectionString)
 
-    '        IsConnectionOpenAsync(sqlConnetion)
+        'Using sqlConnetion As New SqlConnection(connectionString)
 
-    '        Using sqlCommand As New SqlCommand(sqlQuery, sqlConnetion)
+        Dim sqlConnection As New SqlConnection(connectionString)
+        IsConnectionOpenAsync(sqlConnection)
 
-    '            IsAStoredProcedure(isStoredProcedure, sqlCommand)
-    '            AddsqlCommandParameter(parameters, sqlCommand)
+        'Using sqlCommand As New SqlCommand(sqlQuery, sqlConnetion)
+        Dim sqlCommand As New SqlCommand(sqlQuery, sqlConnection)
+        IsAStoredProcedure(isStoredProcedure, sqlCommand)
+        AddsqlCommandParameter(parameters, sqlCommand)
+                Return sqlCommand
 
-    '            Using sqlDataReader = Await sqlCommand.ExecuteReaderAsync(CommandBehavior.CloseConnection)
-    '                While Await sqlDataReader.ReadAsync()
-    '                    For i = 0 To sqlDataReader.FieldCount
-    '                        response.Result.Add(sqlDataReader.GetFieldValueAsync(Of T)(i))
-    '                    Next
-    '                End While
+        'End Using
+        'End Using
+        Return Nothing
+    End Function
 
-    '            End Using
-    '            Return response
-    '        End Using
-    '    End Using
-    '    Return response
-    'End Function
-
-    Private Shared Sub IsConnectionOpenAsync(sqlConnetion As SqlConnection)
+    Private Sub IsConnectionOpenAsync(sqlConnetion As SqlConnection)
         If sqlConnetion.State = ConnectionState.Open Then
             sqlConnetion.Close()
-            sqlConnetion.OpenAsync()
         End If
+        sqlConnetion.OpenAsync()
     End Sub
-    Private Shared Sub AddsqlCommandParameter(parameters As List(Of SqlParameter), sqlCommand As SqlCommand)
+    Private Sub AddsqlCommandParameter(parameters As List(Of SqlParameter), sqlCommand As SqlCommand)
         If IsNothing(parameters) = False Then
             For Each paramter In parameters
                 sqlCommand.Parameters.Add(paramter)
             Next
         End If
     End Sub
-
-    Private Shared Sub IsAStoredProcedure(isStoredProcedure As Boolean, sqlCommand As SqlCommand)
+    Private Sub IsAStoredProcedure(isStoredProcedure As Boolean, sqlCommand As SqlCommand)
         If isStoredProcedure = True Then
             sqlCommand.CommandType = CommandType.StoredProcedure
         End If
