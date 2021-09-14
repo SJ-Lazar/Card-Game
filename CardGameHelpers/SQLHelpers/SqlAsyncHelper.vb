@@ -1,32 +1,37 @@
 ﻿Imports System.Data.SqlClient
+Imports CardGameDataModels
 
 Public Class SqlAsyncHelper
-    Public Function ExecuteQueryAsync(connectionString As String, sqlQuery As String,
+    Public Async Function ExecuteQueryAsync(connectionString As String, sqlQuery As String,
                                 Optional parameters As List(Of SqlParameter) = Nothing,
-                                Optional isStoredProcedure As Boolean = False) As SqlCommand
+                                Optional isStoredProcedure As Boolean = False) As Task(Of List(Of CardModel))
 
+        Dim list = New List(Of CardModel)
+        Using sqlConnetion As New SqlConnection(connectionString)
+            Await sqlConnetion.OpenAsync
+            Try
+                Using sqlCommand As New SqlCommand(sqlQuery, sqlConnetion)
+                    IsAStoredProcedure(isStoredProcedure, sqlCommand)
+                    AddsqlCommandParameter(parameters, sqlCommand)
 
-        'Using sqlConnetion As New SqlConnection(connectionString)
-
-        Dim sqlConnection As New SqlConnection(connectionString)
-        IsConnectionOpenAsync(sqlConnection)
-
-        'Using sqlCommand As New SqlCommand(sqlQuery, sqlConnetion)
-        Dim sqlCommand As New SqlCommand(sqlQuery, sqlConnection)
-        IsAStoredProcedure(isStoredProcedure, sqlCommand)
-        AddsqlCommandParameter(parameters, sqlCommand)
-                Return sqlCommand
-
-        'End Using
-        'End Using
-        Return Nothing
+                    Using dr = Await sqlCommand.ExecuteReaderAsync()
+                        While Await dr.ReadAsync()
+                            list.Add(New CardModel(id:=dr.GetFieldValue(Of Integer)(0),
+                                                   name:=dr.GetFieldValue(Of String)(1),
+                                                   imageId:=dr.GetFieldValue(Of Integer)(2)))
+                        End While
+                    End Using
+                End Using
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        End Using
+        Return list
     End Function
-
-    Private Sub IsConnectionOpenAsync(sqlConnetion As SqlConnection)
-        If sqlConnetion.State = ConnectionState.Open Then
-            sqlConnetion.Close()
+    Private Async Sub IsConnectionOpenAsync(sqlConnetion As SqlConnection)
+        If sqlConnetion.State = ConnectionState.Closed Then
+            Await sqlConnetion.OpenAsync()
         End If
-        sqlConnetion.OpenAsync()
     End Sub
     Private Sub AddsqlCommandParameter(parameters As List(Of SqlParameter), sqlCommand As SqlCommand)
         If IsNothing(parameters) = False Then

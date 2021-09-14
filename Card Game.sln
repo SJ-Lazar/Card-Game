@@ -15,6 +15,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CardGameRepository", "CardG
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "General", "GeneralExtensions\General.vbproj", "{A34B9AA3-0254-41E7-9AEB-6DE80B1F8F4E}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CardGameConsoleUI", "CardGameConsoleUI\CardGameConsoleUI.vbproj", "{32D322F6-F22C-4CDB-8C17-5E6AE5C8310F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{A34B9AA3-0254-41E7-9AEB-6DE80B1F8F4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A34B9AA3-0254-41E7-9AEB-6DE80B1F8F4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A34B9AA3-0254-41E7-9AEB-6DE80B1F8F4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32D322F6-F22C-4CDB-8C17-5E6AE5C8310F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32D322F6-F22C-4CDB-8C17-5E6AE5C8310F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32D322F6-F22C-4CDB-8C17-5E6AE5C8310F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32D322F6-F22C-4CDB-8C17-5E6AE5C8310F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

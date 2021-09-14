@@ -7,7 +7,7 @@ Public Interface ICardRepository
     Function CreateCard(cardModel As CardModel) As SqlResponseModel
     Function UpdateCard(cardModel As CardModel) As SqlResponseModel
     Function DeleteCard(Id As Integer) As SqlResponseModel
-    Function ReadCardList() As List(Of CardModel)
+    Function ReadCardList() As Task(Of List(Of CardModel))
     Function ReadCard() As CardModel
 End Interface
 
@@ -32,10 +32,10 @@ Public Class CardRepository
         Throw New NotImplementedException()
     End Function
 
-    Public Function ReadCardList() As List(Of CardModel) Implements ICardRepository.ReadCardList
-        Dim sqlHelper = New SqlHelper()
-        Dim dt = sqlHelper.ExecuteQuery(_connectionString, "SELECT * FROM dbo.Card")
-        Dim listOfCards = ConvertDataTable.ToList(Of CardModel)(dt)
+    Public Async Function ReadCardList() As Task(Of List(Of CardModel)) Implements ICardRepository.ReadCardList
+        Dim sqlHelper = New SqlAsyncHelper()
+        Dim listOfCards = Await sqlHelper.ExecuteQueryAsync(_connectionString, "SELECT * FROM dbo.Card")
+
         Return listOfCards
     End Function
 
