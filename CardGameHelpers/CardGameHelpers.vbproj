@@ -79,7 +79,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="SQLHelpers\ISqlControl.vb" />
     <Compile Include="SQLHelpers\SqlAsyncHelper.vb" />
+    <Compile Include="SQLHelpers\SqlControl.vb" />
     <Compile Include="SQLHelpers\SqlHelper.vb" />
   </ItemGroup>
   <ItemGroup>
