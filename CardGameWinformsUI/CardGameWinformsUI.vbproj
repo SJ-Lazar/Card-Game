@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B2D1E54A-E4A9-48C8-846B-ED01BD69A441}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>CardGameWinformsUI.My.MyApplication</StartupObject>
+    <StartupObject>CardGameWinformsUI.mdiMainMenu</StartupObject>
     <RootNamespace>CardGameWinformsUI</RootNamespace>
     <AssemblyName>CardGameWinformsUI</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -92,6 +92,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\BattleFieldForms\BattleField.Designer.vb">
+      <DependentUpon>BattleField.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BattleFieldForms\BattleField.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\CardForms\frmAddUpdateCard.Designer.vb">
       <DependentUpon>frmAddUpdateCard.vb</DependentUpon>
     </Compile>
@@ -108,6 +114,12 @@
       <DependentUpon>frmViewAllCards.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\CardForms\frmViewAllCards.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DeckForms\frmChooseDeck.Designer.vb">
+      <DependentUpon>frmChooseDeck.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DeckForms\frmChooseDeck.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\PlayersForm\frmAddUpdate.Designer.vb">
@@ -135,6 +147,7 @@
       <DependentUpon>frmLogin.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Log\Logger.vb" />
     <Compile Include="MainMenu\mdiMainMenu.Designer.vb">
       <DependentUpon>mdiMainMenu.vb</DependentUpon>
     </Compile>
@@ -145,6 +158,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -158,11 +172,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\BattleFieldForms\BattleField.resx">
+      <DependentUpon>BattleField.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CardForms\frmCreateCard.resx">
       <DependentUpon>frmCreateCard.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CardForms\frmViewAllCards.resx">
       <DependentUpon>frmViewAllCards.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DeckForms\frmChooseDeck.resx">
+      <DependentUpon>frmChooseDeck.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.vb</DependentUpon>

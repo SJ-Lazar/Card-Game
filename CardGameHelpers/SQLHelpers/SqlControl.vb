@@ -16,13 +16,18 @@ Public Class SqlControl
     'Query Stats
     Public RecordCount As Integer
     Public Exception As String
+
     Public Sub New()
     End Sub
-
     Public Sub New(connectionString As String)
         _dbConnection = New SqlConnection(connectionString)
     End Sub
-
+    Public Sub New(connectionString As String, isStoredProcedure As Boolean)
+        _dbConnection = New SqlConnection(connectionString)
+        If isStoredProcedure = True Then
+            _dbCommand.CommandType = CommandType.StoredProcedure
+        End If
+    End Sub
     Public Sub ExecuteQuery(query As String) Implements ISqlControl.ExecuteQuery
         'Reset Stats 
         ResetStats()
@@ -37,7 +42,6 @@ Public Class SqlControl
             CloseConection()
         End Try
     End Sub
-
     Public Sub AddParam(name As String, value As Object) Implements ISqlControl.AddParam
         Dim newParam As New SqlParameter(name, value)
         Params.Add(newParam)
@@ -70,7 +74,4 @@ Public Class SqlControl
     Private Sub CaptureExceptionErrors(ex As Exception)
         Exception = $"ExecuteQuery Error: {ex.Message}"
     End Sub
-
-
-
 End Class

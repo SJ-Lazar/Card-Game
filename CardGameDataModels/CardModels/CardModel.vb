@@ -2,8 +2,8 @@
     Public Sub New()
     End Sub
 
-    Public Sub New(id As Integer, name As String, imageId As Integer)
-        Me.Id = id
+    Public Sub New(name As String, imageId As Integer)
+
         Me.Name = name
         Me.ImageId = imageId
     End Sub
