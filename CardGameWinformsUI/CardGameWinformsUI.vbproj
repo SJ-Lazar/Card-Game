@@ -92,16 +92,28 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\BattleFieldForms\BattleField.Designer.vb">
-      <DependentUpon>BattleField.vb</DependentUpon>
+    <Compile Include="Forms\BattleFieldForms\frmBattleField.Designer.vb">
+      <DependentUpon>frmBattleField.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\BattleFieldForms\BattleField.vb">
+    <Compile Include="Forms\BattleFieldForms\frmBattleField.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\CardForms\frmAddUpdateCard.Designer.vb">
       <DependentUpon>frmAddUpdateCard.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\CardForms\frmAddUpdateCard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CardForms\frmCard.Designer.vb">
+      <DependentUpon>frmCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CardForms\frmCard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CardForms\frmCardManager.Designer.vb">
+      <DependentUpon>frmCardManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CardForms\frmCardManager.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\CardForms\frmCreateCard.Designer.vb">
@@ -172,8 +184,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\BattleFieldForms\BattleField.resx">
-      <DependentUpon>BattleField.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\BattleFieldForms\frmBattleField.resx">
+      <DependentUpon>frmBattleField.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CardForms\frmCard.resx">
+      <DependentUpon>frmCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CardForms\frmCardManager.resx">
+      <DependentUpon>frmCardManager.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CardForms\frmCreateCard.resx">
       <DependentUpon>frmCreateCard.vb</DependentUpon>

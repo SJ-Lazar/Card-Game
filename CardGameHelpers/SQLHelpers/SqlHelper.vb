@@ -3,8 +3,8 @@
 Public Class SqlHelper
 
     Public Function ExecuteQuery(connectionString As String, sqlQuery As String,
-                                 Optional parameters As List(Of SqlParameter) = Nothing,
-                                 Optional isStoredProcedure As Boolean = False) As DataTable
+                                  Optional isStoredProcedure As Boolean = False,
+                                 Optional parameters As List(Of SqlParameter) = Nothing) As DataTable
         Dim dataTable As New DataTable
         Using sqlConnetion As New SqlConnection(connectionString)
 
@@ -13,7 +13,7 @@ Public Class SqlHelper
             Using sqlCommand As New SqlCommand(sqlQuery, sqlConnetion)
 
                 IsAStoredProcedure(isStoredProcedure, sqlCommand)
-                AddsqlCommandParameter(parameters, sqlCommand)
+                CreateSqlCommandParameters(parameters, sqlCommand)
 
                 Dim sqlDataAdapter As New SqlDataAdapter(sqlCommand)
                 sqlDataAdapter.Fill(dataTable)
@@ -25,29 +25,32 @@ Public Class SqlHelper
     End Function
 
     Public Function ExecuteNonQuery(connectionString As String, sqlQuery As String,
-                                 Optional parameters As List(Of SqlParameter) = Nothing,
-                                 Optional isStoredProcedure As Boolean = False) As Boolean
+                                    Optional isStoredProcedure As Boolean = False,
+                                    Optional parameters As List(Of SqlParameter) = Nothing) As Boolean
 
-        Using sqlConnetion As New SqlConnection(connectionString)
+        Try
+            Using sqlConnetion As New SqlConnection(connectionString)
 
-            IsConnectionOpen(sqlConnetion)
+                IsConnectionOpen(sqlConnetion)
+                Using sqlCommand As New SqlCommand(sqlQuery, sqlConnetion)
+                    IsAStoredProcedure(isStoredProcedure, sqlCommand)
+                    CreateSqlCommandParameters(parameters, sqlCommand)
+                    Dim result = sqlCommand.ExecuteNonQuery()
+                    MsgBox(result.ToString)
+                    Return True
+                End Using
 
-            Using sqlCommand As New SqlCommand(sqlQuery, sqlConnetion)
-                IsAStoredProcedure(isStoredProcedure, sqlCommand)
-                AddsqlCommandParameter(parameters, sqlCommand)
-                sqlCommand.ExecuteNonQuery()
-                Return True
             End Using
 
-        End Using
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
         Return False
     End Function
 
-    Private Sub AddsqlCommandParameter(parameters As List(Of SqlParameter), sqlCommand As SqlCommand)
+    Private Sub CreateSqlCommandParameters(parameters As List(Of SqlParameter), sqlCommand As SqlCommand)
         If IsNothing(parameters) = False Then
-            For Each paramter In parameters
-                sqlCommand.Parameters.Add(paramter)
-            Next
+            parameters.ForEach(Sub(p) sqlCommand.Parameters.Add(p))
         End If
     End Sub
 

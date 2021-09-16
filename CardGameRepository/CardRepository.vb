@@ -1,50 +1,51 @@
 ﻿
+Imports System.Data.SqlClient
 Imports CardGameDataModels
 Imports CardGameHelpers
 
 
 
 Public Class CardRepository
-    Implements IGenericCrud(Of CardModel)
+    Implements IGenericCrud(Of MonsterCardModel)
 
     Private ReadOnly _connectionString As String
-    Private ReadOnly _sql As SqlControl
-
+    Private ReadOnly _sqlhelper As SqlHelper
     Public Sub New(connectionString As String)
         _connectionString = connectionString
-        _sql = New SqlControl(_connectionString)
+        _sqlhelper = New SqlHelper()
     End Sub
 
-    Public Function Create(model As CardModel) As Boolean Implements IGenericCrud(Of CardModel).Create
-        AddParameters(model, _sql)
-        _sql.ExecuteQuery("INSERT INTO dbo.Card(Name,ImageId) VALUES(@Name,@ImageId)")
-        Return HasException(_sql)
+    Public Function Create(model As MonsterCardModel) As Boolean Implements IGenericCrud(Of MonsterCardModel).Create
+        Try
+            Dim IsSuccess = _sqlhelper.ExecuteNonQuery(_connectionString, "spCreateMonsterCard", True, AddParameters(model))
+            If IsSuccess Then MsgBox("Success")
+            Return IsSuccess
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        Return False
     End Function
 
-    Private Shared Function HasException(sql As SqlControl) As Boolean
-        If sql.HasException Then
-            MsgBox("Failed to preform operation. Try again")
-            Return False
-        End If
-        MsgBox("Success")
-        Return True
+    Private Function AddParameters(model As MonsterCardModel) As List(Of SqlParameter)
+        Dim list = New List(Of SqlParameter)
+        list.Add(New SqlParameter(parameterName:="@Name", value:=model.Name.ToString()))
+        list.Add(New SqlParameter(parameterName:="@ImagePath", value:=model.ImagePath.ToString()))
+        list.Add(New SqlParameter(parameterName:="@ImageName", value:=model.ImageName.ToString()))
+        list.Add(New SqlParameter(parameterName:="@Description", value:=model.Description.ToString()))
+        list.Add(New SqlParameter(parameterName:="@Attack", value:=CInt(model.Attack)))
+        list.Add(New SqlParameter(parameterName:="@Defense", value:=CInt(model.Defense)))
+        Return list
     End Function
 
-    Private Shared Sub AddParameters(model As CardModel, sql As SqlControl)
-        sql.AddParam("@Name", model.Name.ToString())
-        sql.AddParam("@ImageId", CInt(model.ImageId))
-    End Sub
-
-    Public Function Update(id As Integer, model As CardModel) As Boolean Implements IGenericCrud(Of CardModel).Update
+    Public Function Update(id As Integer, model As MonsterCardModel) As Boolean Implements IGenericCrud(Of MonsterCardModel).Update
         Throw New NotImplementedException()
     End Function
 
-    Public Function Delete(Id As Integer) As Boolean Implements IGenericCrud(Of CardModel).Delete
+    Public Function Delete(Id As Integer) As Boolean Implements IGenericCrud(Of MonsterCardModel).Delete
         Throw New NotImplementedException()
     End Function
 
-    Public Function Read() As DataTable Implements IGenericCrud(Of CardModel).Read
-        _sql.ExecuteQuery("SELECT * FROM dbo.Card")
-        Return _sql.DbDataTable
+    Public Function Read() As DataTable Implements IGenericCrud(Of MonsterCardModel).Read
+        Return _sqlhelper.ExecuteQuery(_connectionString, "spGetAllCards", True)
     End Function
 End Class

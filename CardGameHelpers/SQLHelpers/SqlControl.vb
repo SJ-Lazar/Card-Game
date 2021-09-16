@@ -22,17 +22,13 @@ Public Class SqlControl
     Public Sub New(connectionString As String)
         _dbConnection = New SqlConnection(connectionString)
     End Sub
-    Public Sub New(connectionString As String, isStoredProcedure As Boolean)
-        _dbConnection = New SqlConnection(connectionString)
-        If isStoredProcedure = True Then
-            _dbCommand.CommandType = CommandType.StoredProcedure
-        End If
-    End Sub
+
     Public Sub ExecuteQuery(query As String) Implements ISqlControl.ExecuteQuery
         'Reset Stats 
         ResetStats()
 
         Try
+
             OpenConnectionAnCreateCommand(query)
             ConfigureParams()
             ExecuteCommnadAndfillDataSet()
@@ -41,6 +37,26 @@ Public Class SqlControl
         Finally
             CloseConection()
         End Try
+    End Sub
+    Public Sub ExecuteNonQuery(query As String, Optional isStoredProcedure As Boolean = False)
+        'Reset Stats 
+        ResetStats()
+
+        Try
+            OpenConnectionAnCreateCommand(query)
+            If isStoredProcedure = True Then
+                _dbCommand.CommandType = CommandType.StoredProcedure
+            End If
+            ConfigureParams()
+            ExecuteCommnad()
+        Catch ex As Exception
+            CaptureExceptionErrors(ex)
+        Finally
+            CloseConection()
+        End Try
+    End Sub
+    Private Sub ExecuteCommnad()
+        RecordCount = _dbCommand.ExecuteNonQuery
     End Sub
     Public Sub AddParam(name As String, value As Object) Implements ISqlControl.AddParam
         Dim newParam As New SqlParameter(name, value)
@@ -62,6 +78,10 @@ Public Class SqlControl
     Private Sub ConfigureParams()
         Params.ForEach(Sub(p) _dbCommand.Parameters.Add(p))
         Params.Clear()
+    End Sub
+    Private Sub ConfigureParamsWithValue()
+        Params.ForEach(Sub(p) _dbCommand.Parameters.AddWithValue(p.ParameterName, p.Value))
+
     End Sub
     Private Sub ExecuteCommnadAndfillDataSet()
         DbDataTable = New DataTable

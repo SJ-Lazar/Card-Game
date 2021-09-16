@@ -23,15 +23,14 @@ Partial Class mdiMainMenu
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.pnlHeader = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.pnlFooter = New System.Windows.Forms.Panel()
         Me.pnlCenter = New System.Windows.Forms.Panel()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.btnManageCards = New System.Windows.Forms.Button()
-        Me.btnManagePlayers = New System.Windows.Forms.Button()
         Me.btnManageAI = New System.Windows.Forms.Button()
+        Me.btnManagePlayers = New System.Windows.Forms.Button()
+        Me.btnManageCards = New System.Windows.Forms.Button()
+        Me.btnCardManager = New System.Windows.Forms.Button()
         Me.pnlHeader.SuspendLayout()
         Me.pnlCenter.SuspendLayout()
         Me.SuspendLayout()
@@ -46,6 +45,15 @@ Partial Class mdiMainMenu
         Me.pnlHeader.Size = New System.Drawing.Size(784, 100)
         Me.pnlHeader.TabIndex = 1
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(342, 39)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(109, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Welcome Admin Nike"
+        '
         'pnlFooter
         '
         Me.pnlFooter.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
@@ -58,6 +66,7 @@ Partial Class mdiMainMenu
         'pnlCenter
         '
         Me.pnlCenter.BackColor = System.Drawing.Color.Gray
+        Me.pnlCenter.Controls.Add(Me.btnCardManager)
         Me.pnlCenter.Controls.Add(Me.btnManageAI)
         Me.pnlCenter.Controls.Add(Me.btnManagePlayers)
         Me.pnlCenter.Controls.Add(Me.btnManageCards)
@@ -67,23 +76,14 @@ Partial Class mdiMainMenu
         Me.pnlCenter.Size = New System.Drawing.Size(784, 561)
         Me.pnlCenter.TabIndex = 3
         '
-        'Label1
+        'btnManageAI
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(342, 39)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(109, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Welcome Admin Nike"
-        '
-        'btnManageCards
-        '
-        Me.btnManageCards.Location = New System.Drawing.Point(221, 52)
-        Me.btnManageCards.Name = "btnManageCards"
-        Me.btnManageCards.Size = New System.Drawing.Size(122, 75)
-        Me.btnManageCards.TabIndex = 0
-        Me.btnManageCards.Text = "Manage Cards "
-        Me.btnManageCards.UseVisualStyleBackColor = True
+        Me.btnManageAI.Location = New System.Drawing.Point(477, 52)
+        Me.btnManageAI.Name = "btnManageAI"
+        Me.btnManageAI.Size = New System.Drawing.Size(122, 75)
+        Me.btnManageAI.TabIndex = 2
+        Me.btnManageAI.Text = "Manage AI"
+        Me.btnManageAI.UseVisualStyleBackColor = True
         '
         'btnManagePlayers
         '
@@ -94,14 +94,23 @@ Partial Class mdiMainMenu
         Me.btnManagePlayers.Text = "Manage Players"
         Me.btnManagePlayers.UseVisualStyleBackColor = True
         '
-        'btnManageAI
+        'btnManageCards
         '
-        Me.btnManageAI.Location = New System.Drawing.Point(477, 52)
-        Me.btnManageAI.Name = "btnManageAI"
-        Me.btnManageAI.Size = New System.Drawing.Size(122, 75)
-        Me.btnManageAI.TabIndex = 2
-        Me.btnManageAI.Text = "Manage AI"
-        Me.btnManageAI.UseVisualStyleBackColor = True
+        Me.btnManageCards.Location = New System.Drawing.Point(221, 52)
+        Me.btnManageCards.Name = "btnManageCards"
+        Me.btnManageCards.Size = New System.Drawing.Size(122, 75)
+        Me.btnManageCards.TabIndex = 0
+        Me.btnManageCards.Text = "Manage Cards "
+        Me.btnManageCards.UseVisualStyleBackColor = True
+        '
+        'btnCardManager
+        '
+        Me.btnCardManager.Location = New System.Drawing.Point(221, 133)
+        Me.btnCardManager.Name = "btnCardManager"
+        Me.btnCardManager.Size = New System.Drawing.Size(122, 75)
+        Me.btnCardManager.TabIndex = 3
+        Me.btnCardManager.Text = "Card Manager"
+        Me.btnCardManager.UseVisualStyleBackColor = True
         '
         'mdiMainMenu
         '
@@ -121,7 +130,6 @@ Partial Class mdiMainMenu
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents ToolTip As System.Windows.Forms.ToolTip
     Friend WithEvents pnlHeader As Panel
     Friend WithEvents pnlFooter As Panel
     Friend WithEvents pnlCenter As Panel
@@ -129,4 +137,5 @@ Partial Class mdiMainMenu
     Friend WithEvents btnManageAI As Button
     Friend WithEvents btnManagePlayers As Button
     Friend WithEvents btnManageCards As Button
+    Friend WithEvents btnCardManager As Button
 End Class

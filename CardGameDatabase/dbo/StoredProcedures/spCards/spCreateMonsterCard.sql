@@ -10,18 +10,18 @@ AS
 	DECLARE @CardId INT, @ImageId INT
 	
 BEGIN 
-		BEGIN TRAN
+		BEGIN TRANSACTION
 		BEGIN TRY 
 			INSERT INTO dbo.Image(ImagePath, ImageName) VALUES(@ImagePath, @ImageName);
 			SELECT @ImageId = SCOPE_IDENTITY();
 				IF @ImageId IS NOT NULL 
 				BEGIN
-					INSERT INTO dbo.Card(Name, ImageId) VALUES(@Name, @ImageId)
+					INSERT INTO dbo.Card([Name], ImageId) VALUES(@Name, @ImageId)
 				END
 				SELECT @CardId = SCOPE_IDENTITY();
 				IF @CardId IS NOT NULL 
 					BEGIN
-						INSERT INTO dbo.MonsterCard(CardId, Description, Attack, Defense) VALUES(@CardId, @Description, @Attack, @Defense)
+						INSERT INTO dbo.MonsterCard(CardId, [Description], Attack, Defense) VALUES(@CardId, @Description, @Attack, @Defense)
 					END
 		COMMIT TRANSACTION
 		END TRY 

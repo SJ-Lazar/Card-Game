@@ -38,6 +38,7 @@ Partial Class frmCreateCard
         Me.nudDefense = New System.Windows.Forms.NumericUpDown()
         Me.rbMonster = New System.Windows.Forms.RadioButton()
         Me.rbSpell = New System.Windows.Forms.RadioButton()
+        Me.txtImagePath = New System.Windows.Forms.TextBox()
         Me.txtImageName = New System.Windows.Forms.TextBox()
         CType(Me.pbImage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.nudAttack, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -181,12 +182,19 @@ Partial Class frmCreateCard
         Me.rbSpell.Text = "Spell"
         Me.rbSpell.UseVisualStyleBackColor = True
         '
+        'txtImagePath
+        '
+        Me.txtImagePath.Location = New System.Drawing.Point(25, 219)
+        Me.txtImagePath.Name = "txtImagePath"
+        Me.txtImagePath.Size = New System.Drawing.Size(270, 20)
+        Me.txtImagePath.TabIndex = 20
+        '
         'txtImageName
         '
-        Me.txtImageName.Location = New System.Drawing.Point(26, 219)
+        Me.txtImageName.Location = New System.Drawing.Point(25, 193)
         Me.txtImageName.Name = "txtImageName"
         Me.txtImageName.Size = New System.Drawing.Size(270, 20)
-        Me.txtImageName.TabIndex = 20
+        Me.txtImageName.TabIndex = 21
         '
         'frmCreateCard
         '
@@ -194,6 +202,7 @@ Partial Class frmCreateCard
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(324, 488)
         Me.Controls.Add(Me.txtImageName)
+        Me.Controls.Add(Me.txtImagePath)
         Me.Controls.Add(Me.rbSpell)
         Me.Controls.Add(Me.rbMonster)
         Me.Controls.Add(Me.nudDefense)
@@ -235,5 +244,6 @@ Partial Class frmCreateCard
     Friend WithEvents nudDefense As NumericUpDown
     Friend WithEvents rbMonster As RadioButton
     Friend WithEvents rbSpell As RadioButton
+    Friend WithEvents txtImagePath As TextBox
     Friend WithEvents txtImageName As TextBox
 End Class
